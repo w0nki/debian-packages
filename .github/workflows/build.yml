@@ -1,0 +1,178 @@
+name: Build packages
+
+on:
+  schedule:
+    - cron: "23 10 * * *"   # daily, ~2:23am Pacific
+  workflow_dispatch:
+    inputs:
+      package:
+        description: "Only this package (blank = all enabled)"
+        required: false
+        default: ""
+      force:
+        description: "Rebuild even if this version is already published"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths: ["packages/**"]   # recipe changes trigger a check right away
+
+# Never let two runs edit the repo at the same time.
+concurrency:
+  group: apt-repo
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.check.outputs.matrix }}
+      any: ${{ steps.check.outputs.any }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}   # only used by require_green_ci
+          FORCE: ${{ inputs.force && '1' || '0' }}
+          ONLY: ${{ inputs.package }}
+        run: scripts/check-updates.sh "$ONLY"
+
+  build:
+    needs: check
+    if: needs.check.outputs.any == 'true'
+    strategy:
+      fail-fast: false   # one broken package shouldn't block the others
+      matrix: ${{ fromJSON(needs.check.outputs.matrix) }}
+    name: build ${{ matrix.pkg }} (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    container: debian:trixie   # keep in sync with SUITE in config.sh
+    timeout-minutes: 120
+    steps:
+      - name: Install git
+        run: apt-get update -qq && apt-get install -y -qq git ca-certificates >/dev/null
+      - uses: actions/checkout@v7
+      - name: Build
+        run: scripts/build-package.sh "${{ matrix.pkg }}" "${{ matrix.ref }}" out
+      - uses: actions/upload-artifact@v7
+        with:
+          name: built-${{ matrix.pkg }}-${{ matrix.arch }}
+          path: out/*.deb
+          if-no-files-found: error
+          retention-days: 7
+
+  # Install each .deb into a fresh container that has none of the build deps,
+  # so a missing runtime dependency shows up here instead of on your laptop.
+  test:
+    needs: [check, build]
+    if: always() && needs.check.outputs.any == 'true'
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.check.outputs.matrix) }}
+    name: test ${{ matrix.pkg }} (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    container: debian:trixie
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          name: built-${{ matrix.pkg }}-${{ matrix.arch }}
+          path: out
+      - name: Install and smoke-test
+        run: |
+          apt-get update -qq
+          bash scripts/smoke-test.sh "${{ matrix.pkg }}" out/*.deb
+      # Only packages that passed get this artifact, and only these get published.
+      - uses: actions/upload-artifact@v7
+        with:
+          name: deb-${{ matrix.pkg }}-${{ matrix.arch }}
+          path: out/*.deb
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: [check, test]
+    # Publish whatever succeeded, even if some builds failed.
+    if: always() && needs.check.outputs.any == 'true'
+    runs-on: ubuntu-24.04
+    container: debian:trixie
+    permissions:
+      contents: write   # push the gh-pages branch
+      pages: write      # deploy to GitHub Pages
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Install tools
+        run: |
+          apt-get update -qq
+          apt-get install -y -qq git ca-certificates gnupg apt-utils dpkg-dev xz-utils >/dev/null
+      - uses: actions/checkout@v7
+
+      - uses: actions/download-artifact@v8
+        continue-on-error: true   # all builds may have failed
+        with:
+          pattern: deb-*
+          path: incoming
+          merge-multiple: true
+
+      - name: Anything to publish?
+        id: any
+        run: |
+          if ls incoming/*.deb >/dev/null 2>&1; then
+            echo "yes=true" >> "$GITHUB_OUTPUT"; ls -l incoming
+          else
+            echo "No packages built successfully; nothing to publish."
+            echo "yes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fetch current repository (gh-pages branch)
+        if: steps.any.outputs.yes == 'true'
+        run: |
+          git config --global --add safe.directory '*'
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git clone --quiet --depth 1 --branch gh-pages \
+              "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" site
+            rm -rf site/.git
+          else
+            mkdir site
+          fi
+
+      - name: Import signing key
+        if: steps.any.outputs.yes == 'true'
+        env:
+          APT_SIGNING_KEY: ${{ secrets.APT_SIGNING_KEY }}
+        run: |
+          [ -n "$APT_SIGNING_KEY" ] || { echo "::error::APT_SIGNING_KEY secret is not set (see README)"; exit 1; }
+          printf '%s\n' "$APT_SIGNING_KEY" | gpg --batch --import
+
+      - name: Update and sign repository
+        if: steps.any.outputs.yes == 'true'
+        run: scripts/publish-repo.sh site incoming
+
+      # The branch is just storage for the pool between runs. It's rewritten
+      # as a single commit each time so old .debs don't pile up in git history.
+      - name: Save repository to gh-pages branch
+        if: steps.any.outputs.yes == 'true'
+        run: |
+          cd site
+          git init --quiet -b gh-pages
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit --quiet -m "Repository update from run ${{ github.run_id }}"
+          git push --force --quiet \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" gh-pages
+
+      - uses: actions/upload-pages-artifact@v5
+        if: steps.any.outputs.yes == 'true'
+        with:
+          path: site
+          include-hidden-files: true
+
+      - uses: actions/deploy-pages@v5
+        if: steps.any.outputs.yes == 'true'
+        id: deploy
