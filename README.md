@@ -55,14 +55,20 @@ You need `git`, `gpg` and the [`gh`](https://cli.github.com/) CLI on your laptop
 ## Using the repo on a machine
 
 Install the key from your own checkout. Don't download it from the Pages site,
-because then you'd be trusting whatever the site serves.
+because then you'd be trusting whatever the site serves. On a machine without
+the original key file, clone the repo and check the fingerprint first: it must
+match the one `make-signing-key.sh` printed (and that the site's front page shows).
+
+```sh
+gpg --show-keys keys/archive-keyring.gpg
+```
 
 ```sh
 sudo install -m644 keys/archive-keyring.gpg /usr/share/keyrings/selfbuilt.gpg
 
 sudo tee /etc/apt/sources.list.d/selfbuilt.sources <<'EOF'
 Types: deb
-URIs: https://<you>.github.io/debian-packages/
+URIs: https://w0nki.github.io/debian-packages/
 Suites: trixie
 Components: main
 Signed-By: /usr/share/keyrings/selfbuilt.gpg
@@ -75,7 +81,11 @@ Pin: release o=selfbuilt
 Pin-Priority: 100
 EOF
 
-sudo apt update && sudo apt install niri
+# dms needs quickshell, which Debian ships in trixie-backports.
+echo 'deb http://deb.debian.org/debian trixie-backports main' \
+  | sudo tee /etc/apt/sources.list.d/backports.list
+
+sudo apt update && sudo apt install niri dms
 ```
 
 With that pin, niri installs and upgrades from your repo as normal, because
@@ -116,9 +126,16 @@ fields:
 | `smoke_test()` | Runs after the .deb is apt-installed into a clean container. A good one is `foo --version`. |
 
 Helpers you can call: `ensure_rust` uses Debian's rustc if it meets the crate's
-`rust-version`, and installs the stable toolchain with rustup if not.
+`rust-version`, and installs the stable toolchain with rustup if not (set
+`rust_toolchain=stable` to always use rustup). `ensure_go` lets Debian's Go
+fetch the exact Go version the project's `go.mod` asks for (checked against
+Google's Go checksum database).
 `ensure_zig <ver>` downloads that exact Zig release and verifies its signature.
 `fetch_minisigned <url> <pubkey> <out>` downloads a file and checks its signature.
+
+If a package depends on another one this repo builds, just list it in
+`depends`. The test step offers apt everything built in the same run plus
+everything already published.
 
 Files under `/etc` are marked as conffiles automatically. Put `postinst`,
 `prerm`, etc. next to the recipe if a package needs them.
@@ -149,6 +166,16 @@ scripts/local-build.sh niri v25.11     # a specific tag
   systemd user units, portal config and shell completions as upstream's
   packaging guide lists them. The binary isn't stripped, because upstream asks
   packagers to keep line tables so panic backtraces are useful.
+- **dms** (DankMaterialShell, now called Dux Modular Shell upstream): the Go
+  `dms` binary is built from source and the QML shell is installed to
+  `/usr/share/quickshell/dms`, following upstream's own Debian packaging
+  (which ships a prebuilt binary instead). Needs `quickshell` from
+  trixie-backports, plus the two packages below.
+- **matugen**: the Material You color generator dms uses for theming. Rust,
+  always built with current stable Rust because it doesn't declare a minimum.
+- **dux-search**: the `dsearch` file search service behind the dms launcher's
+  file results. Ships a systemd user unit; turn it on per user with
+  `systemctl --user enable --now dsearch`.
 - **ghostty**: included but `enabled=false`. Ghostty's build needs a
   specific Zig release that I couldn't download where this was written, so it
   hasn't been test-built. To try it, set `enabled=true`, push, and watch the run.

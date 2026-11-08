@@ -75,15 +75,33 @@ jobs:
     runs-on: ${{ matrix.runner }}
     container: debian:trixie
     steps:
+      - name: Install git and apt-utils
+        run: apt-get update -qq && apt-get install -y -qq git ca-certificates apt-utils >/dev/null
       - uses: actions/checkout@v7
       - uses: actions/download-artifact@v8
         with:
           name: built-${{ matrix.pkg }}-${{ matrix.arch }}
           path: out
-      - name: Install and smoke-test
+      # Packages this repo builds can depend on each other (dms needs matugen
+      # and dux-search). Offer apt everything built in this run plus
+      # everything already published, as a local repo.
+      - uses: actions/download-artifact@v8
+        continue-on-error: true
+        with:
+          pattern: built-*
+          path: local/this-run
+          merge-multiple: true
+      - name: Add already-published packages
         run: |
-          apt-get update -qq
-          bash scripts/smoke-test.sh "${{ matrix.pkg }}" out/*.deb
+          git config --global --add safe.directory '*'
+          mkdir -p local/published
+          if git fetch --quiet --depth 1 origin gh-pages; then
+            git archive FETCH_HEAD pool | tar -x -C local/published || true
+          fi
+      - name: Install and smoke-test
+        env:
+          LOCAL_DEBS_DIR: local
+        run: bash scripts/smoke-test.sh "${{ matrix.pkg }}" out/*.deb
       # Only packages that passed get this artifact, and only these get published.
       - uses: actions/upload-artifact@v7
         with:

@@ -21,6 +21,7 @@ export DEBIAN_FRONTEND=noninteractive
 # --- build dependencies ----------------------------------------------------
 if [[ "${SKIP_APT:-0}" != 1 ]]; then
   log "installing build dependencies"
+  setup_extra_apt_sources
   apt-get update -qq
   apt-get install -y -qq --no-install-recommends \
     build-essential dpkg-dev git ca-certificates curl file xz-utils minisign \

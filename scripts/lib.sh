@@ -22,6 +22,7 @@ recipe_defaults() {
   require_green_ci=false           # branch mode: only take commits whose GitHub checks passed
   pkgrel=1
   arches=(amd64)
+  rust_toolchain=auto              # auto: Debian's rustc if new enough, else rustup | stable: always rustup
   section=misc
   priority=optional
   homepage=""
@@ -131,7 +132,7 @@ deb_revision() { echo "0${VENDOR_TAG}${pkgrel}"; }
 # Uses $upstream_ref and $srcdir.
 default_fetch() {
   if [[ "$track" == tags ]]; then
-    git clone --quiet --depth 1 --branch "$upstream_ref" "$upstream_git" "$srcdir"
+    git -c advice.detachedHead=false clone --quiet --depth 1 --branch "$upstream_ref" "$upstream_git" "$srcdir"
   else
     # Blobless clone keeps history (for `git describe`-style versions) without the bulk.
     git clone --quiet --filter=blob:none --no-checkout "$upstream_git" "$srcdir"
@@ -162,16 +163,35 @@ ensure_rust() {
   local need have
   need="$(grep -m1 -E '^rust-version *=' Cargo.toml | sed -E 's/.*"(.*)".*/\1/' || true)"
   have="$(rustc --version 2>/dev/null | awk '{print $2}' || true)"
-  if [[ -n "$have" ]] && { [[ -z "$need" ]] || dpkg --compare-versions "$have" ge "$need"; }; then
+  if [[ "${rust_toolchain:-auto}" != stable && -n "$have" ]] \
+     && { [[ -z "$need" ]] || dpkg --compare-versions "$have" ge "$need"; }; then
     log "using rustc $have (crate needs ${need:-any})"
     return
   fi
-  log "rustc ${have:-missing} is older than required $need; installing stable via rustup"
-  curl -fsSL --proto '=https' --tlsv1.2 https://sh.rustup.rs \
-    | sh -s -- -y --profile minimal --default-toolchain stable >&2
-  # shellcheck source=/dev/null
-  source "$HOME/.cargo/env"
+  log "rustc ${have:-missing} not suitable (need ${need:-latest stable}); installing stable via rustup"
+  if ! command -v rustup >/dev/null; then
+    curl -fsSL --proto '=https' --tlsv1.2 https://sh.rustup.rs \
+      | sh -s -- -y --profile minimal --default-toolchain stable >&2
+    # shellcheck source=/dev/null
+    source "$HOME/.cargo/env"
+  fi
+  export RUSTUP_TOOLCHAIN=stable
   log "using $(rustc --version)"
+}
+
+# Go: Debian's go reads the module's `go` line and, with GOTOOLCHAIN=auto,
+# fetches that exact toolchain from proxy.golang.org (checked against
+# sum.golang.org). Call from the directory holding go.mod.
+ensure_go() {
+  export GOTOOLCHAIN=auto
+  export GOFLAGS="${GOFLAGS:-} -trimpath -buildvcs=false"
+  log "using $(go version) (go.mod wants $(awk '/^go /{print $2; exit}' go.mod 2>/dev/null))"
+}
+
+# Extra apt sources from config.sh (e.g. backports), for build and test containers.
+setup_extra_apt_sources() {
+  ((${#EXTRA_APT_SOURCES[@]})) || return 0
+  printf '%s\n' "${EXTRA_APT_SOURCES[@]}" > /etc/apt/sources.list.d/extra.list
 }
 
 # Download the exact Zig release a project asks for and verify it.

@@ -21,6 +21,12 @@ VENDOR_TAG="local"
 # How many versions of each package/arch to keep in the repo (lets you downgrade one step).
 KEEP_VERSIONS=2
 
+# Extra apt sources added in the build and test containers. Backports provides
+# quickshell, which dms needs. Machines installing dms need backports enabled too.
+EXTRA_APT_SOURCES=(
+  "deb http://deb.debian.org/debian ${SUITE}-backports main"
+)
+
 # GitHub runner label for each architecture.
 declare -A RUNNER_FOR_ARCH=(
   [amd64]="ubuntu-24.04"

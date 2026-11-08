@@ -1,10 +1,7 @@
 # shellcheck shell=bash
 # ghostty — GPU-accelerated terminal emulator (GTK frontend)
 #
-# Disabled until you've done one manual run: I couldn't test-build this one
-# (Zig downloads were blocked where the scaffold was written). Set enabled=true,
-# then run the workflow by hand with package=ghostty and watch the log.
-enabled=false
+enabled=true
 
 pkgname=ghostty
 upstream_git=https://github.com/ghostty-org/ghostty.git

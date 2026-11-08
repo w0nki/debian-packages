@@ -26,5 +26,6 @@ log "built ${deb#/work/}"
 if [[ "${SMOKE:-1}" == 1 ]]; then
   log "smoke test in a fresh container"
   "$engine" run --rm -i "${tty[@]}" -v "$REPO_ROOT:/work:Z" -w /work "$image" \
-    bash -c 'apt-get update -qq && scripts/smoke-test.sh "$1" "$2"' _ "$name" "$deb"
+    -e LOCAL_DEBS_DIR=/work/out \
+    bash -c 'scripts/smoke-test.sh "$1" "$2"' _ "$name" "$deb"
 fi
