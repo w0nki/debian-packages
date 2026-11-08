@@ -184,7 +184,6 @@ ensure_rust() {
 # sum.golang.org). Call from the directory holding go.mod.
 ensure_go() {
   export GOTOOLCHAIN=auto
-  export GOFLAGS="${GOFLAGS:-} -trimpath -buildvcs=false"
   log "using $(go version) (go.mod wants $(awk '/^go /{print $2; exit}' go.mod 2>/dev/null))"
 }
 
