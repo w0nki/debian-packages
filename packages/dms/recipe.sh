@@ -72,7 +72,10 @@ package() {
 }
 
 smoke_test() {
-  dms version
+    # The test container runs as root, and dms refuses to start as root,
+  # so run it as the unprivileged "nobody" user with a throwaway home dir.
+  local home; home="$(mktemp -d)"; chown nobody "$home"
+  runuser -u nobody -- env HOME="$home" dms version
   test -f /usr/share/quickshell/dms/shell.qml
   test -f /usr/share/quickshell/dms/DCommon/Widgets/DIcon.qml
   command -v qs || command -v quickshell
