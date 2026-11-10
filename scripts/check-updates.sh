@@ -65,7 +65,8 @@ for name in $(list_recipes); do
       runner="${RUNNER_FOR_ARCH[$arch]:-}"
       [[ -n "$runner" ]] || { warn "$name: no runner configured for arch $arch"; continue; }
       log "$name/$arch: needs build -> $want (ref $ref)"
-      printf '{"pkg":"%s","ref":"%s","arch":"%s","runner":"%s"}\n' "$name" "$ref" "$arch" "$runner"
+      printf '{"pkg":"%s","ref":"%s","arch":"%s","runner":"%s","large":%s}\n' \
+        "$name" "$ref" "$arch" "$runner" "$([[ "$large_build" == true ]] && echo true || echo false)"
     done
   )
 done > "$tmp"

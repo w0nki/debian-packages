@@ -116,6 +116,8 @@ fields:
 | `tag_regex` | Which tags count as stable. The default `^v?[0-9]+(\.[0-9]+)+$` skips `-rc`, `-beta`, `tip`, etc. |
 | `require_green_ci` | Branch mode only: build the newest of the last 20 commits whose GitHub checks all passed. |
 | `pkgrel` | Bump it after changing a recipe to force a rebuild of the same upstream version. |
+| `large_build` | `true` frees about 15 GB on the GitHub runner before building (for huge toolchains like CUDA). |
+| `latest_ref()` | Optional. Override how the newest stable version is found (Sunshine asks GitHub for its latest release). |
 | `arches` | `(amd64)` or `(amd64 arm64)`. arm64 runs on GitHub's free arm runners. |
 | `build_depends` | apt packages installed before building. |
 | `depends` / `recommends` / `suggests` / `provides` / `conflicts` / `replaces` | Go straight into the control file. Shared-library deps are worked out automatically by `dpkg-shlibdeps`, so `depends` only needs what that can't see (dlopen'd libraries, helper programs). |
@@ -176,6 +178,14 @@ scripts/local-build.sh niri v25.11     # a specific tag
 - **dux-search**: the `dsearch` file search service behind the dms launcher's
   file results. Ships a systemd user unit; turn it on per user with
   `systemctl --user enable --now dsearch`.
+- **sunshine**: Moonlight game-stream host. Built with upstream's own
+  `scripts/linux_build.sh` (the script their trixie packages use), with CUDA
+  so NVENC works on NVIDIA cards. Follows GitHub's "latest release" rather
+  than the newest tag, because upstream tags pre-releases the same way. The
+  build is large (CUDA toolkit), so the recipe sets `large_build=true` to
+  free disk space on the runner first; expect about an hour. After
+  installing: `systemctl --user enable --now app-dev.lizardbyte.app.Sunshine.service`,
+  then open https://localhost:47990.
 - **ghostty**: included but `enabled=false`. Ghostty's build needs a
   specific Zig release that I couldn't download where this was written, so it
   hasn't been test-built. To try it, set `enabled=true`, push, and watch the run.

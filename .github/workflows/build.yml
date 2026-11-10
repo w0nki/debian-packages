@@ -48,9 +48,23 @@ jobs:
       matrix: ${{ fromJSON(needs.check.outputs.matrix) }}
     name: build ${{ matrix.pkg }} (${{ matrix.arch }})
     runs-on: ${{ matrix.runner }}
-    container: debian:trixie   # keep in sync with SUITE in config.sh
-    timeout-minutes: 120
+    container:
+      image: debian:trixie   # keep in sync with SUITE in config.sh
+      # Preinstalled runner tools we never use; mounted so large builds can
+      # delete them and get the disk space back. Missing paths just mount empty.
+      volumes:
+        - /usr/local/lib/android:/host-cleanup/android
+        - /usr/share/dotnet:/host-cleanup/dotnet
+        - /opt/ghc:/host-cleanup/ghc
+        - /usr/local/.ghcup:/host-cleanup/ghcup
+    timeout-minutes: 180
     steps:
+      - name: Free disk space (large builds only)
+        if: matrix.large
+        run: |
+          df -h / | tail -1
+          rm -rf /host-cleanup/*/* /host-cleanup/*/.[!.]* 2>/dev/null || true
+          df -h / | tail -1
       - name: Install git
         run: apt-get update -qq && apt-get install -y -qq git ca-certificates >/dev/null
       - uses: actions/checkout@v7

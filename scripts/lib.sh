@@ -22,6 +22,7 @@ recipe_defaults() {
   require_green_ci=false           # branch mode: only take commits whose GitHub checks passed
   pkgrel=1
   arches=(amd64)
+  large_build=false                # true: free ~15 GB on the GitHub runner first (e.g. CUDA)
   rust_toolchain=auto              # auto: Debian's rustc if new enough, else rustup | stable: always rustup
   section=misc
   priority=optional
