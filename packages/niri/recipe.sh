@@ -11,7 +11,7 @@ track=tags
 tag_regex='^v[0-9]+\.[0-9]+(\.[0-9]+)?$'
 
 # Bump when you change this recipe without upstream changing; forces a rebuild.
-pkgrel=1
+pkgrel=2
 # Add arm64 here to also build on GitHub's arm runners.
 arches=(amd64)
 
@@ -34,6 +34,9 @@ depends=(libwayland-server0)
 # Upstream's "strongly recommended" list.
 recommends=(xwayland-satellite xdg-desktop-portal-gnome xdg-desktop-portal-gtk gnome-keyring)
 suggests=(fuzzel alacritty mako-notifier)
+# Takes over from niri-git packages (e.g. the DMS repo's), which install the same files.
+conflicts=(niri-git)
+replaces=(niri-git)
 
 build() {
   ensure_rust
