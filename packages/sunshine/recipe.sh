@@ -49,6 +49,9 @@ fetch() {
 }
 
 build() {
+  # GitHub's container jobs use an empty $HOME; upstream's script sources ~/.bashrc.
+  [[ -f "$HOME/.bashrc" ]] || touch "$HOME/.bashrc"
+
   # Version info for Sunshine's CMake (otherwise it tries to work it out from git).
   export BRANCH=master BUILD_VERSION="$upstream_ref" COMMIT="$commit"
 
