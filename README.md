@@ -178,6 +178,12 @@ scripts/local-build.sh niri v25.11     # a specific tag
 - **dux-search**: the `dsearch` file search service behind the dms launcher's
   file results. Ships a systemd user unit; turn it on per user with
   `systemctl --user enable --now dsearch`.
+- **dms-greeter**: the DMS login screen for greetd (upstream repo:
+  `dux-greeter`). Same package name as the DMS repo's, so it upgrades that
+  one in place. Creates the `greeter` user on install. On a new machine, run
+  `sudo dms-greeter install` once to point greetd at it.
+- **dux-gop**: `dgop`, the system-monitor backend behind dms's CPU/GPU/memory
+  and process widgets. Replaces the older `dgop` package.
 - **sunshine**: Moonlight game-stream host. Built with upstream's own
   `scripts/linux_build.sh` (the script their trixie packages use), with CUDA
   so NVENC works on NVIDIA cards. Follows GitHub's "latest release" rather

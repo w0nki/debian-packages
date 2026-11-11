@@ -1,0 +1,22 @@
+#!/bin/sh
+# Create the 'greeter' system user and its directories, from the sysusers.d and
+# tmpfiles.d files this package ships. Safe to run again: existing ones are kept.
+set -e
+
+if [ "$1" = "configure" ]; then
+  if command -v systemd-sysusers >/dev/null; then
+    systemd-sysusers dms-greeter.conf
+  elif ! getent passwd greeter >/dev/null; then
+    useradd --system --user-group --home-dir /var/lib/greeter \
+      --shell /bin/bash --comment "System Greeter" greeter
+  fi
+
+  if command -v systemd-tmpfiles >/dev/null; then
+    systemd-tmpfiles --create dms-greeter.conf || true
+  else
+    install -d -o greeter -g greeter -m 0750 /var/cache/dms-greeter
+    install -d -o greeter -g greeter -m 0755 /var/lib/greeter
+  fi
+fi
+
+exit 0
