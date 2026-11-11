@@ -10,7 +10,7 @@ homepage=https://github.com/duxlabs-dev/dux-shell
 # Releases are vX.Y.Z; skips betas and anything else.
 track=tags
 tag_regex='^v[0-9]+\.[0-9]+\.[0-9]+$'
-pkgrel=1
+pkgrel=2
 arches=(amd64)
 
 section=x11
@@ -31,8 +31,10 @@ depends=(
   qml6-module-qtquick qml6-module-qtquick-controls qml6-module-qtquick-dialogs
   qml6-module-qtquick-effects qml6-module-qtquick-layouts
   qml6-module-qtquick-templates qml6-module-qtquick-window
+  qml6-module-qtquick-shapes qml6-module-qt-labs-folderlistmodel
 )
-suggests=(cups-pk-helper)
+suggests=(cups-pk-helper dux-calendar dux-files)
+recommends=(dux-gop)
 # Upstream's own packages use these names; don't let both be installed.
 conflicts=(dms-git)
 replaces=(dms-git)

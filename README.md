@@ -184,6 +184,13 @@ scripts/local-build.sh niri v25.11     # a specific tag
   `sudo dms-greeter install` once to point greetd at it.
 - **dux-gop**: `dgop`, the system-monitor backend behind dms's CPU/GPU/memory
   and process widgets. Replaces the older `dgop` package.
+- **dux-calendar**: `dcal`, the DMS calendar (formerly dankcalendar). Run
+  `systemctl --user enable --now dcal` to keep it running for the bar.
+- **dux-files**: `dfiles`, the DMS file manager. Also registers as a file-picker
+  portal and as the "show in folder" handler.
+- **xwayland-satellite**: runs X11 apps (Steam, some games, older apps) under
+  niri. niri 25.08+ starts it automatically when it's installed, so there's
+  nothing to configure. Replaces the DMS repo's `xwayland-satellite-git`.
 - **sunshine**: Moonlight game-stream host. Built with upstream's own
   `scripts/linux_build.sh` (the script their trixie packages use), with CUDA
   so NVENC works on NVIDIA cards. Follows GitHub's "latest release" rather

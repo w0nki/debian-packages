@@ -12,7 +12,7 @@ homepage=https://github.com/duxlabs-dev/dux-greeter
 # Same release numbers as dms itself (v2.1.2 and so on).
 track=tags
 tag_regex='^v[0-9]+\.[0-9]+\.[0-9]+$'
-pkgrel=1
+pkgrel=2
 arches=(amd64)
 
 section=x11
@@ -31,7 +31,8 @@ depends=(
   qml6-module-qtcore qml6-module-qtqml qml6-module-qtquick
   qml6-module-qtquick-controls qml6-module-qtquick-effects
   qml6-module-qtquick-layouts qml6-module-qtquick-templates
-  qml6-module-qtquick-window
+  qml6-module-qtquick-window qml6-module-qtquick-shapes
+  qml6-module-qt-labs-folderlistmodel
 )
 recommends=(niri)
 
