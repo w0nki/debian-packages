@@ -1,0 +1,332 @@
+Package: dms-greeter
+Architecture: amd64
+Version: 2.1.2-0local1
+Priority: optional
+Section: x11
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 30236
+Depends: greetd, quickshell, qml6-module-qtcore, qml6-module-qtqml, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-effects, qml6-module-qtquick-layouts, qml6-module-qtquick-templates, qml6-module-qtquick-window
+Recommends: niri
+Filename: pool/main/d/dms-greeter/dms-greeter_2.1.2-0local1_amd64.deb
+Size: 11158080
+MD5sum: defd9e6c8b3e7193ded43c7e7d13c0c0
+SHA1: 1f36824f0ddd5df6dd576ea4a3dc61338a19ad9a
+SHA256: 14c88df53b8dfe3a5282e4105ed0afd28a78ad697e4d9a7d4cc301479c53c3b5
+SHA512: 130ca9b2320ef9bb61d0599c38e17cbd1825846e51861ab34e506aefeaee846cae41a2d876094bdc28153c8f4fc75f72ae9bf292ee34238d257f1aa94dcee99e
+Homepage: https://github.com/duxlabs-dev/dux-greeter
+Description: DMS login screen for greetd
+ A greetd greeter built on Quickshell, styled to match DankMaterialShell.
+ It runs inside a compositor (niri by default) as the 'greeter' user.
+ .
+ On a new machine, set up greetd to use it with:  sudo dms-greeter install
+ Built from upstream source; see /usr/share/doc/dms-greeter/README.build.
+
+Package: dms-greeter
+Architecture: amd64
+Version: 2.1.2-0local2
+Priority: optional
+Section: x11
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 30236
+Depends: greetd, quickshell, qml6-module-qtcore, qml6-module-qtqml, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-effects, qml6-module-qtquick-layouts, qml6-module-qtquick-templates, qml6-module-qtquick-window, qml6-module-qtquick-shapes, qml6-module-qt-labs-folderlistmodel
+Recommends: niri
+Filename: pool/main/d/dms-greeter/dms-greeter_2.1.2-0local2_amd64.deb
+Size: 11158688
+MD5sum: e4a3c1533d460479df27e2a08fada3b1
+SHA1: 7675d3290a2f6a01161b4d4fbd657d9cd5607f9e
+SHA256: eaceb0e449ff4aee0412352b4c22e4b9d12acfa49e219c35c3f0c2d8b8819122
+SHA512: 438f4f4a127cf80d089218c439014ee8edef7b64cf837f201351c4deba7f7a97a44ad4965ab87330e2e62299f3b9afd4523184d6aeeb0cf1b5c7818206bc32cf
+Homepage: https://github.com/duxlabs-dev/dux-greeter
+Description: DMS login screen for greetd
+ A greetd greeter built on Quickshell, styled to match DankMaterialShell.
+ It runs inside a compositor (niri by default) as the 'greeter' user.
+ .
+ On a new machine, set up greetd to use it with:  sudo dms-greeter install
+ Built from upstream source; see /usr/share/doc/dms-greeter/README.build.
+
+Package: dms
+Architecture: amd64
+Version: 2.1.2-0local1
+Priority: optional
+Section: x11
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 133980
+Depends: quickshell, accountsservice, cava, matugen, dux-search, qt6ct, qml6-module-qtcore, qml6-module-qtmultimedia, qml6-module-qtqml, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-dialogs, qml6-module-qtquick-effects, qml6-module-qtquick-layouts, qml6-module-qtquick-templates, qml6-module-qtquick-window
+Suggests: cups-pk-helper
+Conflicts: dms-git
+Replaces: dms-git
+Filename: pool/main/d/dms/dms_2.1.2-0local1_amd64.deb
+Size: 36571084
+MD5sum: 37d9cb31585e0d78e32c93d0ec779d2f
+SHA1: 276f24b3c98193a5b337e2f24dfdc463c55c11b0
+SHA256: f2e7b58780479188b70a7617893e9c91d99d5e743900eb8006fbdf3c1a7e2455
+SHA512: be25e9925f316e8b0601e81c8a889669430ae93bc5bae763599af8530c004e82a40bf166ce7ce8cefdff99e9b6c451cdf1a2a8c9fb71fbf10b496195af4caa81
+Homepage: https://github.com/duxlabs-dev/dux-shell
+Description: DankMaterialShell desktop shell for niri and other Wayland compositors
+ DMS is a desktop shell built on Quickshell: bar, launcher, notifications,
+ control center, lock screen and wallpaper-based theming for niri, Hyprland,
+ sway and other Wayland compositors.
+ .
+ Built from upstream source; see /usr/share/doc/dms/README.build.
+
+Package: dms
+Architecture: amd64
+Version: 2.1.2-0local2
+Priority: optional
+Section: x11
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 133980
+Depends: quickshell, accountsservice, cava, matugen, dux-search, qt6ct, qml6-module-qtcore, qml6-module-qtmultimedia, qml6-module-qtqml, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-dialogs, qml6-module-qtquick-effects, qml6-module-qtquick-layouts, qml6-module-qtquick-templates, qml6-module-qtquick-window, qml6-module-qtquick-shapes, qml6-module-qt-labs-folderlistmodel
+Recommends: dux-gop
+Suggests: cups-pk-helper, dux-calendar, dux-files
+Conflicts: dms-git
+Replaces: dms-git
+Filename: pool/main/d/dms/dms_2.1.2-0local2_amd64.deb
+Size: 36565160
+MD5sum: 72ee392c1e116998733897fc2a54ee43
+SHA1: 729c482d26a235c6c269baf854002b678ae7fdc4
+SHA256: b8bde2f7dd9083ba4c80faf08bf6989c65eb1d17cb30f9d9e5ec08af45809777
+SHA512: ba5547db7318a28ccceec501eeb8e8627ec148d0d94efc8e34b36b6609c1b745f268fca824e1e2ee1eb71e1006b9ee29527aa4657693061b5cb07374b7b40018
+Homepage: https://github.com/duxlabs-dev/dux-shell
+Description: DankMaterialShell desktop shell for niri and other Wayland compositors
+ DMS is a desktop shell built on Quickshell: bar, launcher, notifications,
+ control center, lock screen and wallpaper-based theming for niri, Hyprland,
+ sway and other Wayland compositors.
+ .
+ Built from upstream source; see /usr/share/doc/dms/README.build.
+
+Package: dux-calendar
+Architecture: amd64
+Version: 2.1.2-0local1
+Priority: optional
+Section: utils
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 65024
+Provides: dankcalendar
+Depends: quickshell, qml6-module-qtcore, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-effects, qml6-module-qtquick-layouts, qml6-module-qtquick-shapes, qml6-module-qtquick-templates, qml6-module-qtquick-window, qml6-module-qt-labs-folderlistmodel
+Recommends: qml6-module-qt-labs-platform
+Conflicts: dankcalendar, dankcalendar-git
+Replaces: dankcalendar, dankcalendar-git
+Filename: pool/main/d/dux-calendar/dux-calendar_2.1.2-0local1_amd64.deb
+Size: 20839336
+MD5sum: 8c6f6f4fd2b3ea5b80a94eb2625d2827
+SHA1: dc5fefa85e42ef2a313724b8d3f07843a5ea75c4
+SHA256: db5b2474c993ae4554936be677efe6900f68c4d7a9dbf0b7e05e2c8be33b3218
+SHA512: 3bec42be7e95f5575ddef5dcab1c8443cfb0246ad524418dc4b2feede6f3ccda9fec45e5f0cd79ab34fc6c7f48ca01811691da606b033a146ceaa5920ecbf5e4
+Homepage: https://github.com/duxlabs-dev/dux-calendar
+Description: calendar app for DankMaterialShell (dcal)
+ A calendar built on Quickshell that matches your DMS theme. It can run in
+ the background so the DMS bar can show your events.
+ .
+ Start it with your session:  systemctl --user enable --now dcal
+ Built from upstream source; see /usr/share/doc/dux-calendar/README.build.
+
+Package: dux-files
+Architecture: amd64
+Version: 2.1.2-0local1
+Priority: optional
+Section: utils
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 41696
+Depends: quickshell, qml6-module-qtcore, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-effects, qml6-module-qtquick-layouts, qml6-module-qtquick-shapes, qml6-module-qtquick-templates, qml6-module-qtquick-window, qml6-module-qt-labs-folderlistmodel
+Recommends: qml6-module-qtquick-pdf, ffmpegthumbnailer, poppler-utils, bubblewrap
+Filename: pool/main/d/dux-files/dux-files_2.1.2-0local1_amd64.deb
+Size: 14310296
+MD5sum: 4e7d4dde7310b800e6ed3184397bd88f
+SHA1: 495e92048fcf6310bd273d99a7f286fe2ad4479a
+SHA256: 1894ca8c4709c3eb3342f91da6ca1332f349b1fc172ee84d8df437af09c0fcfe
+SHA512: 5a854bab4554d5928baab533afd84a172e9f81cacd327422c583cedea626188a96dc67df6fe36703aad9b480ec8ff7de3c1a36b0b6589d08b4b9944273ada83d
+Homepage: https://github.com/duxlabs-dev/dux-files
+Description: file manager for DankMaterialShell (dfiles)
+ A file manager built on Quickshell with tabs, split views, trash and
+ network shares, using your DMS theme. It can also act as the desktop's file
+ picker (xdg-desktop-portal) and as the default 'show in folder' handler.
+ .
+ Built from upstream source; see /usr/share/doc/dux-files/README.build.
+
+Package: dux-gop
+Architecture: amd64
+Version: 2.1.1-0local1
+Priority: optional
+Section: utils
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 10764
+Provides: dgop
+Conflicts: dgop
+Replaces: dgop
+Filename: pool/main/d/dux-gop/dux-gop_2.1.1-0local1_amd64.deb
+Size: 3298844
+MD5sum: e4767bb31de422bb9878c9befcc3b686
+SHA1: 2bdbce75a37385d5e26301fe0dc8b753e563aae1
+SHA256: 27c2fbf974afdee76f73432064472bfc108f87b90b863585338a1b4e7c865cb6
+SHA512: 357f1d29324413e1a29584d28d9c750f4801689f3bf6b592d0efc548750bb9d23015b14fe91a8557a01ae98978375f415f1bfb281dc3d1e51941803431d72ba4
+Homepage: https://github.com/duxlabs-dev/dux-gop
+Description: system monitoring CLI and API (dgop)
+ Reports CPU, memory, GPU, disk, network and process information.
+ DankMaterialShell uses it for its system monitor widgets.
+ .
+ Built from upstream source; see /usr/share/doc/dux-gop/README.build.
+
+Package: dux-search
+Architecture: amd64
+Version: 2.1.1-0local1
+Priority: optional
+Section: utils
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 20244
+Provides: danksearch
+Conflicts: danksearch
+Replaces: danksearch
+Filename: pool/main/d/dux-search/dux-search_2.1.1-0local1_amd64.deb
+Size: 5664420
+MD5sum: dee93f7ff94c760487bd42f44f26de5b
+SHA1: b6f3d464e839726133948dd01dc3f26c447a4fdb
+SHA256: abeeb4cb3a682011959f4e897837a02ac28154f35fbe9cdab97aec8842d9c32e
+SHA512: e2e6931b866f835766d57f572e894119489181b4edd18bf9e1b223eae473a4b80317ec0b9d64f084bab210394a3eff54e155312228457fb8727efe6da21be712
+Homepage: https://github.com/duxlabs-dev/dux-search
+Description: fast filesystem search service (dsearch)
+ Indexes your files and answers search queries over a local socket.
+ The dms launcher uses it for file results.
+ .
+ Enable per user with: systemctl --user enable --now dsearch
+ .
+ Built from upstream source; see /usr/share/doc/dux-search/README.build.
+
+Package: ghostty
+Architecture: amd64
+Version: 1.4.0-0local1
+Priority: optional
+Section: x11
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 71836
+Depends: libadwaita-1-0 (>= 1.5~beta), libc6 (>= 2.38), libegl1, libglib2.0-0t64 (>= 2.76.0), libgtk-4-1 (>= 4.15.4), libgtk4-layer-shell0 (>= 1.0.2), libwayland-client0 (>= 1.9.91), libx11-6
+Filename: pool/main/g/ghostty/ghostty_1.4.0-0local1_amd64.deb
+Size: 24355544
+MD5sum: c3cadd5c5831e761e8e2df02f7e326bb
+SHA1: 1fbe8b4e4d03275548ec3897752f6a131c7e8920
+SHA256: 04bc72774d2b69d57ee0fa6f7fe1ef54a7fd07bf70064bd8517b2eb1adaf7859
+SHA512: e7e5ae690ee68e5d06e6aa96207ee89ab63477454738b95656723504cd5ca49126deff91fc4ea364e78ed7e2db18e22c6d31f2cbb589d16fa3d4ee9246496154
+Homepage: https://ghostty.org
+Description: fast, native, feature-rich terminal emulator
+ Ghostty is a terminal emulator that uses platform-native UI and
+ GPU acceleration. This build uses the GTK frontend.
+ .
+ Built from the signed upstream release tarball; see /usr/share/doc/ghostty/README.build.
+
+Package: matugen
+Architecture: amd64
+Version: 4.2.0-0local1
+Priority: optional
+Section: graphics
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 12040
+Depends: libc6 (>= 2.39), libgcc-s1 (>= 4.2)
+Filename: pool/main/m/matugen/matugen_4.2.0-0local1_amd64.deb
+Size: 2988068
+MD5sum: 2f3e3c1c7848ed6dbab7562f8e2931bc
+SHA1: 455c02c0a5fd69a287ea40e680da0277e2b71b02
+SHA256: 273780b2e0c848e5f597acbde3e1b9bc05957ddeb4cdce450afb6eef54dabe88
+SHA512: d65857bdfa9510bbf5670d452d63332e0410efd32f9c3f42053e790c8525c6b4afe61a545b379706af958e37733c89be1abd1e8b76ce34635cd538dec2d8d33b
+Homepage: https://github.com/InioX/matugen
+Description: Material You color generation tool with templates
+ Generates a Material You color palette from an image or color and fills
+ in templates for GTK, Qt, terminals and other apps.
+ .
+ Built from upstream source; see /usr/share/doc/matugen/README.build.
+
+Package: niri
+Architecture: amd64
+Version: 26.04-0local1
+Priority: optional
+Section: x11
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 164144
+Depends: libc6 (>= 2.39), libcairo2 (>= 1.4.10), libdisplay-info2 (>= 0.2.0), libgbm1 (>= 21.3.0~rc1), libgcc-s1 (>= 4.2), libglib2.0-0t64 (>= 2.12.0), libinput10 (>= 1.21.0), libpango-1.0-0 (>= 1.44.3), libpangocairo-1.0-0 (>= 1.14.0), libpipewire-0.3-0t64 (>= 0.3.75), libpixman-1-0 (>= 0.30.0), libseat1 (>= 0.5.0), libudev1 (>= 183), libxkbcommon0 (>= 0.5.0), libwayland-server0
+Recommends: xwayland-satellite, xdg-desktop-portal-gnome, xdg-desktop-portal-gtk, gnome-keyring
+Suggests: fuzzel, alacritty, mako-notifier
+Filename: pool/main/n/niri/niri_26.04-0local1_amd64.deb
+Size: 23371252
+MD5sum: da9bd498e7b3cd9b9646807260eb0265
+SHA1: b73f52c73395ff4780cd173f8bac536771971d5d
+SHA256: 6d6e1207adb2b15b413b5bd6a96d0565eadcddc3434ecd48dec90ff1a8758951
+SHA512: 11afbcb727f09368b5231b8bc55a8163aae392762f8db0ff17521eb12f31d7cfc93d80a3293b906395e4f6f18253f72432b94f375f2a1cd799e6db4159e4d0ef
+Homepage: https://github.com/niri-wm/niri
+Description: scrollable-tiling Wayland compositor
+ Windows are arranged in columns on an infinite strip going to the right.
+ Opening a new window never causes existing windows to resize.
+ .
+ Built from upstream source; see /usr/share/doc/niri/README.build.
+
+Package: niri
+Architecture: amd64
+Version: 26.04-0local2
+Priority: optional
+Section: x11
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 164144
+Depends: libc6 (>= 2.39), libcairo2 (>= 1.4.10), libdisplay-info2 (>= 0.2.0), libgbm1 (>= 21.3.0~rc1), libgcc-s1 (>= 4.2), libglib2.0-0t64 (>= 2.12.0), libinput10 (>= 1.21.0), libpango-1.0-0 (>= 1.44.3), libpangocairo-1.0-0 (>= 1.14.0), libpipewire-0.3-0t64 (>= 0.3.75), libpixman-1-0 (>= 0.30.0), libseat1 (>= 0.5.0), libudev1 (>= 183), libxkbcommon0 (>= 0.5.0), libwayland-server0
+Recommends: xwayland-satellite, xdg-desktop-portal-gnome, xdg-desktop-portal-gtk, gnome-keyring
+Suggests: fuzzel, alacritty, mako-notifier
+Conflicts: niri-git
+Replaces: niri-git
+Filename: pool/main/n/niri/niri_26.04-0local2_amd64.deb
+Size: 23370372
+MD5sum: 69137dd26e1acc579b1b15313a29a280
+SHA1: 64f411bef46efbef828ea00e6268f835654a7338
+SHA256: 21bf4f22a506b7c60c10ed378ca1ba9e031612972480ded8e743b06054356154
+SHA512: fa81e54ee15d199a0e483a6b2c803e751fb8c1c7dde32456453e0c25fef5854653db71e61f3d3a529310ead7fec991a1db8b493b31805fc49d0dcfb30db68cbc
+Homepage: https://github.com/niri-wm/niri
+Description: scrollable-tiling Wayland compositor
+ Windows are arranged in columns on an infinite strip going to the right.
+ Opening a new window never causes existing windows to resize.
+ .
+ Built from upstream source; see /usr/share/doc/niri/README.build.
+
+Package: sunshine
+Architecture: amd64
+Version: 2026.914.233613-0local1
+Priority: optional
+Section: video
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 50396
+Depends: libc6 (>= 2.38), libcap2 (>= 1:2.10), libcurl4t64 (>= 7.63.0), libdrm2 (>= 2.4.112), libevdev2 (>= 0.9.1), libgbm1 (>= 21.3.0~rc1), libglib2.0-0t64 (>= 2.68.0), libminiupnpc18 (>= 2.2.8), libnuma1 (>= 2.0.11), libpipewire-0.3-0t64 (>= 0.3.75), libpulse0 (>= 0.99.1), libqt6core6t64 (>= 6.8.2), libqt6gui6 (>= 6.1.2), libqt6widgets6 (>= 6.3.0), libssl3t64 (>= 3.0.0), libva-drm2 (>= 1.1.0), libva2 (>= 2.21.0), libvulkan1 (>= 1.2.131.2), libwayland-client0 (>= 1.20.0), libx11-6, libxtst6 (>= 2:1.2.5), libcap2-bin
+Filename: pool/main/s/sunshine/sunshine_2026.914.233613-0local1_amd64.deb
+Size: 15336828
+MD5sum: cd52e6ce01646ca368dfb86f73d77593
+SHA1: ceec249de21e26cfa3516636f98bf243f4e251e3
+SHA256: 1caa90176195664a4d7564dc322513f805695d088cc281715eef7c374727df4d
+SHA512: aac6815d0065806c2bc03190836301934484b5ab218bfbb4efdc615c3bc33c667b0b82e744b156442f11a1a55d77408dfefc9391b7347eb482eaeb97ac8cbd79
+Homepage: https://app.lizardbyte.dev/Sunshine
+Description: self-hosted game stream host for Moonlight
+ Sunshine streams games and the desktop from this machine to Moonlight
+ clients, with hardware encoding on NVIDIA (NVENC), AMD and Intel (VA-API).
+ .
+ After installing, enable it for your user:
+   systemctl --user enable --now app-dev.lizardbyte.app.Sunshine.service
+ then open https://localhost:47990 to set it up.
+ .
+ Built from upstream source; see /usr/share/doc/sunshine/README.build.
+
+Package: xwayland-satellite
+Architecture: amd64
+Version: 0.8.3-0local1
+Priority: optional
+Section: x11
+Maintainer: Package Builder <apt@invalid>
+Installed-Size: 7856
+Depends: libc6 (>= 2.39), libgcc-s1 (>= 4.2), libxcb-cursor0 (>= 0.0.99), libxcb1 (>= 1.11.1), xwayland
+Conflicts: xwayland-satellite-git
+Replaces: xwayland-satellite-git
+Filename: pool/main/x/xwayland-satellite/xwayland-satellite_0.8.3-0local1_amd64.deb
+Size: 1862304
+MD5sum: 36522c9c99f46dd47215d3340e174868
+SHA1: acbcdbcf0e1d0868963941196dfb2883611a43a5
+SHA256: 7eca6898d854efefb1589f4a26c51b98985695262da43d2168ca247912643b51
+SHA512: b6d008c54718af16f9d1d7fbf57c363210d72d492378e5b25fca23974071476310c6d1cb67e79fd54018d5a307f4467fc0993ed842444198f98964d41f5ddd7b
+Homepage: https://github.com/Supreeeme/xwayland-satellite
+Description: Xwayland outside your Wayland compositor
+ Lets X11 applications run on Wayland compositors that have no built-in
+ Xwayland support, such as niri. niri launches it automatically when needed.
+ .
+ Built from upstream source; see /usr/share/doc/xwayland-satellite/README.build.
+

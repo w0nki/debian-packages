@@ -1,0 +1,24 @@
+Architectures: amd64
+Codename: trixie
+Components: main
+Date: Wed, 11 Nov 2026 05:19:01 +0000
+Description: Packages built from upstream source by GitHub Actions
+Label: Self-built packages
+Origin: selfbuilt
+Suite: trixie
+MD5Sum:
+ f7a6cba81aec7d183ac7112d65f83e3d            16942 main/binary-amd64/Packages
+ d25fb8a7854831a12019c8ceba910b3d             5502 main/binary-amd64/Packages.gz
+ 01b2b86403bf46869a0d2a37bfda8534             5224 main/binary-amd64/Packages.xz
+SHA1:
+ e1a6d5af83093d783cf4cb60806fc069818abf61            16942 main/binary-amd64/Packages
+ e17ac5570c80e967e36a6e9ff57fbbd2936aba59             5502 main/binary-amd64/Packages.gz
+ 6dd8217d9a2e98d42f76bd947d83cfe0492035ca             5224 main/binary-amd64/Packages.xz
+SHA256:
+ 00a491b66676310e1b53812d13002f72c1f939a6854b1973aefdd1306395e065            16942 main/binary-amd64/Packages
+ b1f49037871ce874517766a9e7c5b86685ca0062d7aa1f85c652cbdd42e722a0             5502 main/binary-amd64/Packages.gz
+ b390ef2fed1ae1eaa723b54e140a713da7a8d2e8569e3a88eeefaaaa502b7a41             5224 main/binary-amd64/Packages.xz
+SHA512:
+ d9774a47716b7df75685729a4443932d7ce5c58908457eeadff96115e87c5649de2480b4ec91dd3fe7e1cdfd45b07ecf66c480e3f995bfd4a8fb4dc0ee7e9202            16942 main/binary-amd64/Packages
+ 4e3b99710d0fba91cca4b44ecd94f1733485cdaa5df520fadab51bc56ccf2f8ee781c587404c368433369e5f9da07d156d0d7d082c348bb91bf228b9d451ea86             5502 main/binary-amd64/Packages.gz
+ 2096e39b550217a55b67016357c1a0802371e0c3c203b3a283a1dd0dc09a0edaf2ef15638e6ba77196b17483a3adc8de959f97700d7eaa61ec5ae1a476dbea97             5224 main/binary-amd64/Packages.xz
