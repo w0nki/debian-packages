@@ -1,0 +1,34 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Architectures: amd64
+Codename: trixie
+Components: main
+Date: Sat, 14 Nov 2026 21:36:50 +0000
+Description: Packages built from upstream source by GitHub Actions
+Label: Self-built packages
+Origin: selfbuilt
+Suite: trixie
+MD5Sum:
+ 0af60f092129fc8acdf6057da42311bf            18479 main/binary-amd64/Packages
+ dc83881208454d930a475cc56049b665             6087 main/binary-amd64/Packages.gz
+ c21ed882659214feadd6d3a611ad1594             5764 main/binary-amd64/Packages.xz
+SHA1:
+ bfa98345998c8cdc7fbb3b559d480cc8e0971d07            18479 main/binary-amd64/Packages
+ d76f9a1fbc34001063c38e0b190eadbf13297dae             6087 main/binary-amd64/Packages.gz
+ b4e4678320bd89c2fafb7a656c2dda3325e50b1a             5764 main/binary-amd64/Packages.xz
+SHA256:
+ abe8244244636d78f5110ddb52ea6f0e2d81b7634e51d830dbcb7b0c26de446f            18479 main/binary-amd64/Packages
+ bf40e52d60338e41d13ae15740b6a179d08493e6170ef9c9914a4dd98c5e3f24             6087 main/binary-amd64/Packages.gz
+ 6497c32cf047c90dae5823772fa7dca32152365ef86769d0e169f556a0e6ccaa             5764 main/binary-amd64/Packages.xz
+SHA512:
+ 7dc62b959409b30c47251e4ffe37913bccdc62f955d1a74cec4a3a06ae6b33a0e9bd135c2f3b37010fd01ac182056f5693592583cf2b459c6b0f853b3f6042e7            18479 main/binary-amd64/Packages
+ 284cbfd7b3573c3a495a77c5ed6ae9a9edeef1241b7d63cdaf151cd9be4f8041e01c71847ab7492826a43e581bc127b20ee86e372360eb27c58277072ae0f595             6087 main/binary-amd64/Packages.gz
+ a21cc689ba7791acffb76b2b1f5fc5e7ba70afcdf5df46f263264ddc5f82199bc49020e014992d12c8780d3ab508fc70c10aef596c5f8abfec4c562e5bfabb99             5764 main/binary-amd64/Packages.xz
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQTh5iP5Tdm/j5OGadfSrZB0TvO+3gUCavjUcgAKCRDSrZB0TvO+
+3vNHAQDIWVMqDxou4HQ80CmbgFUY30HcvUXvTZI39UTujL8gPAD/akgdvNPBAYE5
+LNCwGi1WLPnloOkvnwdK84ALJQj3WgA=
+=NPk+
+-----END PGP SIGNATURE-----
