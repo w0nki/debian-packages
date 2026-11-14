@@ -21,7 +21,7 @@ Built from upstream source; see /usr/share/doc/localsend/README.build."
 
 # What upstream's own release build installs, plus what Flutter needs to run.
 build_depends=(
-  clang cmake ninja-build pkgconf unzip xz-utils
+  clang lld cmake ninja-build pkgconf unzip xz-utils
   libgtk-3-dev libayatana-appindicator3-dev
 )
 # Tray icon libraries are loaded at runtime, so dpkg-shlibdeps can't see them
