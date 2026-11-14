@@ -191,6 +191,11 @@ scripts/local-build.sh niri v25.11     # a specific tag
 - **xwayland-satellite**: runs X11 apps (Steam, some games, older apps) under
   niri. niri 25.08+ starts it automatically when it's installed, so there's
   nothing to configure. Replaces the DMS repo's `xwayland-satellite-git`.
+- **localsend**: LAN file sharing (an open AirDrop alternative). A Flutter app
+  with a Rust core: the recipe fetches the exact Flutter SDK version upstream
+  pins, and builds the Rust part from source instead of downloading it
+  prebuilt. Needs port 53317 TCP and UDP open
+  (`sudo ufw allow 53317`).
 - **sunshine**: Moonlight game-stream host. Built with upstream's own
   `scripts/linux_build.sh` (the script their trixie packages use), with CUDA
   so NVENC works on NVIDIA cards. Follows GitHub's "latest release" rather
