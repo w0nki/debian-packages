@@ -53,6 +53,10 @@ build() {
   cd app || die "no app dir"
   # Build the Rust library from source, never cargokit's prebuilt download.
   printf 'use_precompiled_binaries: false\nverbose_logging: true\n' > cargokit_options.yaml
+  # Debian 13's libayatana-appindicator marks app_indicator_new() deprecated, and
+  # Flutter builds plugins with -Werror; keep that one warning from failing the build.
+  export CFLAGS="${CFLAGS:-} -Wno-error=deprecated-declarations"
+  export CXXFLAGS="${CXXFLAGS:-} -Wno-error=deprecated-declarations"
   flutter pub get
   flutter build linux --release
 }
